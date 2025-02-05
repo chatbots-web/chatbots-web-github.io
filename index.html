@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot de Automatización</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(to right, #2c3e50, #4ca1af); /* Fondo degradado */
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .contenedor-botones {
+            position: absolute;
+            top: 0%;
+            width: initial;
+            height: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .boton {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #120af3;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .boton:hover {
+            background-color: #4c0af0;
+            transform: scale(1.05);
+        }
+
+        /* Estilos para el menú desplegable */
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: -200px; /* Oculto inicialmente */
+            width: 200px;
+            background-color: rgba(21, 20, 20, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s;
+            z-index: 3;
+        }
+
+        .menu.active {
+            left: 0; /* Mueve el menú a la vista */
+        }
+
+        .menu-boton {
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            color: #f0eef7;
+            border-bottom: 5px solid #ddd;
+            border-radius: 100%;
+            cursor: pointer;
+        }
+
+        .menu-boton:hover {
+            background-color: #3306fa;
+        }
+
+        .toggle-menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #3808f8;
+            color: rgb(245, 239, 245);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 4;
+        }
+    </style>
+</head>
+<body>
+    
+    <video loop autoplay muted src="video/chatbot dialogo-1.mp4"></video>
+
+    <button class="toggle-menu">☰</button>
+    <div class="menu">
+        <div class="menu-boton">Portafolio</div>
+        <div class="menu-boton">Sitio Web</div>
+        <div class="menu-boton">LinkedIn</div>
+        <div class="menu-boton">Proyectos</div>
+        <div class="menu-boton">Contacto</div>
+    </div>
+
+    
+    <script>
+        // Manejo de la apertura y cierre del menú
+        const toggleMenu = document.querySelector('.toggle-menu');
+        const menu = document.querySelector('.menu');
+
+        toggleMenu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        (function(d, t) { 
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+                window.voiceflow.chat.load({
+                    verify: { projectID: '668ea792f5272a4816372bea' },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production'
+                });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+            v.type = "text/javascript"; 
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+    </script>
+</body>
+</html>
